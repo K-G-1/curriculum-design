@@ -21,27 +21,30 @@ void task(void)
 	{
 		 ms_10 = 0;
 		 detection_IO();
+		 display(voltage);
 	}
 	// 行驶逻辑
 	if(ms_100 == 1)
 	{
 		ms_100 = 0;
+
 		travel_task(10);
 	}
 	// ADC任务
 	if(ms_500 == 1)
 	{
-
+		  ADC_task();
 	}
 	if(ms_1000 == 1)
 	{
 		 ms_1000 = 0;
-		 display(machine_status);
+		 
+		 LED_task(machine_status);
 	}
 }
 void main()
 {
-
+	
 	init();
 	P0=0x00;
 	P1=0x00;
@@ -53,6 +56,7 @@ void main()
 		// 任务调用
 		task();
 		
+
 	}
 
 }

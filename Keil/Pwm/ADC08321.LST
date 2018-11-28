@@ -1,0 +1,90 @@
+C51 COMPILER V9.00   ADC08321                                                              11/29/2018 01:36:42 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE ADC08321
+OBJECT MODULE PLACED IN ADC08321.OBJ
+COMPILER INVOKED BY: H:\Keil\C51\BIN\C51.EXE ADC08321.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+*** WARNING C500 IN LINE 1 OF ADC08321.C: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+
+   1          #include "all.h"
+*** WARNING C235 IN LINE 7 OF DISPLAY.H: parameter 1: different types
+   2          #include<intrins.h>
+   3          
+   4          uchar voltage;
+   5          
+   6          sbit scl1=P1^1; //芯片的通信脉冲引脚
+   7          sbit sda1=P1^2;  //数据传输引脚
+   8          sbit px1=P1^5;  //片选引脚，即选择ADC0831和DS1302
+   9          sbit cs1=P1^0; //片选引脚
+  10          
+  11          
+  12          uchar readad0831() //本函数是按照ADC0831的协议编写的
+  13          {
+  14   1       char i=0,tmp=0;
+  15   1       sda1=1;
+  16   1       cs1=0;
+  17   1       _nop_();
+  18   1       _nop_();
+  19   1       scl1=0;
+  20   1       _nop_();
+  21   1       _nop_();
+  22   1       scl1=1;
+  23   1       _nop_();
+  24   1       _nop_();
+  25   1       scl1=0;
+  26   1      _nop_();
+  27   1       _nop_();
+  28   1       scl1=1;
+  29   1       _nop_();
+  30   1       _nop_();
+  31   1       scl1=0;
+  32   1       _nop_();
+  33   1       _nop_();
+  34   1       for(i=0;i<8;i++)
+  35   1       {
+  36   2       tmp<<=1;
+  37   2       if(sda1)
+  38   2       tmp++;
+  39   2        scl1=1;
+  40   2        _nop_();
+  41   2        _nop_();
+  42   2        scl1=0;
+  43   2        _nop_();
+  44   2        _nop_();
+  45   2       }
+  46   1       cs1=1;
+  47   1       return tmp;
+  48   1      }
+  49          
+  50          void ADC_task()
+  51          {
+  52   1              uchar ADC_value = 0;
+  53   1              
+C51 COMPILER V9.00   ADC08321                                                              11/29/2018 01:36:42 PAGE 2   
+
+  54   1      
+  55   1              ADC_value = readad0831();
+  56   1              voltage =       ADC_value*5*10/255;
+  57   1      
+  58   1              if(voltage <40)
+  59   1                      machine_status = 3;
+  60   1      
+  61   1      }
+  62          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     87    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)

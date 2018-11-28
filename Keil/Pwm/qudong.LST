@@ -1,15 +1,16 @@
-C51 COMPILER V9.00   QUDONG                                                                11/27/2018 23:51:24 PAGE 1   
+C51 COMPILER V9.00   QUDONG                                                                11/29/2018 01:36:41 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE QUDONG
 OBJECT MODULE PLACED IN qudong.OBJ
-COMPILER INVOKED BY: G:\Keil\C51\BIN\C51.EXE qudong.c BROWSE DEBUG OBJECTEXTEND
+COMPILER INVOKED BY: H:\Keil\C51\BIN\C51.EXE qudong.c BROWSE DEBUG OBJECTEXTEND
 
 line level    source
 
 *** WARNING C500 IN LINE 1 OF QUDONG.C: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
 
    1          #include"all.h"
+*** WARNING C235 IN LINE 7 OF DISPLAY.H: parameter 1: different types
    2          #define straight_Ver_Max 50
    3          #define straight_Hoz_Max 30
    4          
@@ -62,9 +63,9 @@ line level    source
   51   1      }
   52          
   53          
-  54          void forward1() //电机1前进
-C51 COMPILER V9.00   QUDONG                                                                11/27/2018 23:51:24 PAGE 2   
+C51 COMPILER V9.00   QUDONG                                                                11/29/2018 01:36:41 PAGE 2   
 
+  54          void forward1() //电机1前进
   55          {
   56   1              in1=1;
   57   1              in2=0;
@@ -126,9 +127,9 @@ line level    source
  113   2                         if(Vec_cnt <= 0)
  114   2                              run_status ++;
  115   2               }
- 116   1               if(run_status == 5)
-C51 COMPILER V9.00   QUDONG                                                                11/27/2018 23:51:24 PAGE 3   
+C51 COMPILER V9.00   QUDONG                                                                11/29/2018 01:36:41 PAGE 3   
 
+ 116   1               if(run_status == 5)
  117   1               {
  118   2                         Turn_cnt ++;
  119   2                         if(Turn_cnt >= Turn_Max)
@@ -190,9 +191,9 @@ line level    source
 *** WARNING C280 IN LINE 171 OF QUDONG.C: 'Feq': unreferenced local variable
 
 
-MODULE INFORMATION:   STATIC OVERLAYABLE
-C51 COMPILER V9.00   QUDONG                                                                11/27/2018 23:51:24 PAGE 4   
+C51 COMPILER V9.00   QUDONG                                                                11/29/2018 01:36:41 PAGE 4   
 
+MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =    441    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
@@ -203,4 +204,4 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  3 WARNING(S),  0 ERROR(S)

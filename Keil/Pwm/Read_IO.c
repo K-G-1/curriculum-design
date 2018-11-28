@@ -27,31 +27,12 @@ uchar detection_IO(void)
 	 	obstacle_old = obstacle;	
 	}
 
-	if(flame == 0 && obstacle == 0 )
+	if(flame == 0 && obstacle == 0 && voltage >=40)
 	{
 	 	machine_status = 0;
 	}
+
+	return 0;
 }
 
-void display(uchar sta)
-{
-	if(sta == 0)
-	{
-	   led1 = 1;
-	}
 
-	if(sta == 1)
-	{
-		led1 = 0;
-	   led2 = 1;
-	}
-	else led2= 0;
-
-	if(sta == 2)
-	{
-		led1 = 0;
-		led3 = 1 ;
-	}
-	else led3 = 0;	
-
-}

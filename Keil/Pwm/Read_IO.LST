@@ -1,15 +1,16 @@
-C51 COMPILER V9.00   READ_IO                                                               11/27/2018 23:51:25 PAGE 1   
+C51 COMPILER V9.00   READ_IO                                                               11/29/2018 01:41:42 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE READ_IO
 OBJECT MODULE PLACED IN Read_IO.OBJ
-COMPILER INVOKED BY: G:\Keil\C51\BIN\C51.EXE Read_IO.c BROWSE DEBUG OBJECTEXTEND
+COMPILER INVOKED BY: H:\Keil\C51\BIN\C51.EXE Read_IO.c BROWSE DEBUG OBJECTEXTEND
 
 line level    source
 
 *** WARNING C500 IN LINE 1 OF READ_IO.C: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
 
    1          #include "all.h"
+*** WARNING C235 IN LINE 7 OF DISPLAY.H: parameter 1: different types
    2          
    3          uchar flame_old,obstacle_old = 0;
    4          uchar machine_status = 0;
@@ -38,42 +39,19 @@ line level    source
   27   2                      obstacle_old = obstacle;        
   28   2              }
   29   1      
-  30   1              if(flame == 0 && obstacle == 0 )
+  30   1              if(flame == 0 && obstacle == 0 && voltage >=40)
   31   1              {
   32   2                      machine_status = 0;
   33   2              }
-  34   1      }
-*** WARNING C173 IN LINE 34 OF READ_IO.C: missing return-expression
-  35          
-  36          void display(uchar sta)
-  37          {
-  38   1              if(sta == 0)
-  39   1              {
-  40   2                 led1 = 1;
-  41   2              }
-  42   1      
-  43   1              if(sta == 1)
-  44   1              {
-  45   2                      led1 = 0;
-  46   2                 led2 = 1;
-  47   2              }
-  48   1              else led2= 0;
-  49   1      
-  50   1              if(sta == 2)
-  51   1              {
-  52   2                      led1 = 0;
-  53   2                      led3 = 1 ;
-C51 COMPILER V9.00   READ_IO                                                               11/27/2018 23:51:25 PAGE 2   
-
-  54   2              }
-  55   1              else led3 = 0;  
-  56   1      
-  57   1      }
-*** WARNING C290 IN LINE 34 OF READ_IO.C: missing return value
+  34   1      
+  35   1              return 0;
+  36   1      }
+  37          
+  38          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     91    ----
+   CODE SIZE        =     73    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
@@ -83,4 +61,4 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  3 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)

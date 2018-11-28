@@ -1,6 +1,8 @@
 "qudong.obj",
 "main.obj",
 "delay.obj",
-"Read_IO.obj" 
+"Read_IO.obj",
+"display.obj",
+"ADC08321.obj" 
 TO "Pwm_12" 
 RAMSIZE(256) 

@@ -366,6 +366,16 @@
               <FileType>1</FileType>
               <FilePath>.\Read_IO.c</FilePath>
             </File>
+            <File>
+              <FileName>display.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\display.c</FilePath>
+            </File>
+            <File>
+              <FileName>ADC08321.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ADC08321.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
