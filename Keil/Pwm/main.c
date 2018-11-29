@@ -35,6 +35,7 @@ void task(void)
 	{
 		  ADC_task();
 	}
+	//led显示，也可以当做报警设置
 	if(ms_1000 == 1)
 	{
 		 ms_1000 = 0;
@@ -60,7 +61,7 @@ void main()
 	}
 
 }
-
+//这个中断最好不要修改
 void  time0() interrupt 1
 {
 	TH0=(65536-1000)/256;

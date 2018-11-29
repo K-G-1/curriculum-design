@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   QUDONG                                                                11/29/2018 01:36:41 PAGE 1   
+C51 COMPILER V9.00   QUDONG                                                                11/29/2018 11:19:37 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE QUDONG
@@ -11,190 +11,192 @@ line level    source
 
    1          #include"all.h"
 *** WARNING C235 IN LINE 7 OF DISPLAY.H: parameter 1: different types
-   2          #define straight_Ver_Max 50
-   3          #define straight_Hoz_Max 30
-   4          
-   5          #define Turn_Max 20
+   2          
+   3          //修改这三个宏定义 以控制小车的行驶距离
+   4          #define straight_Ver_Max 50
+   5          #define straight_Hoz_Max 30
    6          
-   7          
-   8          extern count1,count2;
-   9          uint run_status =0 ;
-  10          uint Vec_cnt , Hoz_cnt,Turn_cnt = 0;
-  11          
-  12          
-  13          void Forward()
-  14          {
-  15   1            in1=1;                    //左电机
-  16   1                in2=0;
-  17   1                in3=1;                          //右电机
-  18   1                in4=0;
-  19   1      }
-  20          
-  21          void Back()
-  22          {
-  23   1            in1=0;                    //左电机
-  24   1                in2=1;
-  25   1                in3=0;                          //右电机
-  26   1                in4=1;
-  27   1      }
-  28          
-  29          void Left()
-  30          {
-  31   1            in1=0;
-  32   1                in2=0;
-  33   1                in3=1;
-  34   1                in4=0;
-  35   1      }
-  36          
-  37          void Right()
-  38          {
-  39   1            in1=1;
-  40   1                in2=0;
-  41   1                in3=0;
-  42   1                in4=0;
-  43   1      }
-  44          
-  45          void Stop()
-  46          {
-  47   1            in1=0;
-  48   1                in2=0;
-  49   1                in3=0;
-  50   1                in4=0;
-  51   1      }
-  52          
-  53          
-C51 COMPILER V9.00   QUDONG                                                                11/29/2018 01:36:41 PAGE 2   
+   7          #define Turn_Max 20
+   8          
+   9          
+  10          extern count1,count2;
+  11          uint run_status =0 ;
+  12          uint Vec_cnt , Hoz_cnt,Turn_cnt = 0;
+  13          
+  14          
+  15          void Forward()
+  16          {
+  17   1            in1=1;                    //左电机
+  18   1                in2=0;
+  19   1                in3=1;                          //右电机
+  20   1                in4=0;
+  21   1      }
+  22          
+  23          void Back()
+  24          {
+  25   1            in1=0;                    //左电机
+  26   1                in2=1;
+  27   1                in3=0;                          //右电机
+  28   1                in4=1;
+  29   1      }
+  30          
+  31          void Left()
+  32          {
+  33   1            in1=0;
+  34   1                in2=0;
+  35   1                in3=1;
+  36   1                in4=0;
+  37   1      }
+  38          
+  39          void Right()
+  40          {
+  41   1            in1=1;
+  42   1                in2=0;
+  43   1                in3=0;
+  44   1                in4=0;
+  45   1      }
+  46          
+  47          void Stop()
+  48          {
+  49   1            in1=0;
+  50   1                in2=0;
+  51   1                in3=0;
+  52   1                in4=0;
+  53   1      }
+C51 COMPILER V9.00   QUDONG                                                                11/29/2018 11:19:37 PAGE 2   
 
-  54          void forward1() //电机1前进
-  55          {
-  56   1              in1=1;
-  57   1              in2=0;
-  58   1      }
-  59          void forward2()  //电机2前进
-  60          {
-  61   1              in3=1;
-  62   1              in4=0;
-  63   1      }
-  64          
-  65          void speed(uint cnt1,uint sd1,uint cnt2,uint sd2)
-  66          {
-  67   1         if(cnt1<sd1)         //电机1 PWM调速
-  68   1                      PWM1=1;
-  69   1              else
-  70   1                      PWM1=0;
-  71   1              if(cnt2<sd2)//电机2     PWM调速
-  72   1                      PWM2=1;
-  73   1              else
-  74   1                  PWM2=0;
-  75   1      }
-  76          void turn(uint cnt1,uint sd1,uint cnt2,uint sd2)
-  77          {
-  78   1              forward1();
-  79   1              forward2();
-  80   1              speed(cnt1,sd1,cnt2,sd2);
-  81   1      }
-  82          // 100ms调用一次
-  83          void travel_logic(void)
-  84          {
-  85   1      // 状态 切换
-  86   1               if(run_status == 0)
-  87   1               {
-  88   2                              Vec_cnt ++;
-  89   2                         if(Vec_cnt >= straight_Ver_Max)
-  90   2                              run_status ++;
-  91   2               }
-  92   1               if(run_status == 1)
-  93   1               {
-  94   2                              Turn_cnt ++;
-  95   2                         if(Turn_cnt >= Turn_Max)
-  96   2                              run_status ++;
-  97   2               }
-  98   1               if(run_status == 2)
-  99   1               {
- 100   2                              Hoz_cnt ++;
- 101   2                              if(Hoz_cnt >=straight_Hoz_Max)
- 102   2                                      run_status ++;
- 103   2               }
- 104   1               if(run_status == 3)
- 105   1               {
- 106   2                              Turn_cnt --;
- 107   2                         if(Turn_cnt <= 0)
- 108   2                              run_status ++;
- 109   2               }
- 110   1               if(run_status == 4)
- 111   1               {
- 112   2                         Vec_cnt --;
- 113   2                         if(Vec_cnt <= 0)
- 114   2                              run_status ++;
- 115   2               }
-C51 COMPILER V9.00   QUDONG                                                                11/29/2018 01:36:41 PAGE 3   
+  54          
+  55          
+  56          void forward1() //电机1前进
+  57          {
+  58   1              in1=1;
+  59   1              in2=0;
+  60   1      }
+  61          void forward2()  //电机2前进
+  62          {
+  63   1              in3=1;
+  64   1              in4=0;
+  65   1      }
+  66          
+  67          void speed(uint cnt1,uint sd1,uint cnt2,uint sd2)
+  68          {
+  69   1         if(cnt1<sd1)         //电机1 PWM调速
+  70   1                      PWM1=1;
+  71   1              else
+  72   1                      PWM1=0;
+  73   1              if(cnt2<sd2)//电机2     PWM调速
+  74   1                      PWM2=1;
+  75   1              else
+  76   1                  PWM2=0;
+  77   1      }
+  78          void turn(uint cnt1,uint sd1,uint cnt2,uint sd2)
+  79          {
+  80   1              forward1();
+  81   1              forward2();
+  82   1              speed(cnt1,sd1,cnt2,sd2);
+  83   1      }
+  84          // 100ms调用一次
+  85          void travel_logic(void)
+  86          {
+  87   1      // 状态 切换
+  88   1               if(run_status == 0)
+  89   1               {
+  90   2                              Vec_cnt ++;
+  91   2                         if(Vec_cnt >= straight_Ver_Max)
+  92   2                              run_status ++;
+  93   2               }
+  94   1               if(run_status == 1)
+  95   1               {
+  96   2                              Turn_cnt ++;
+  97   2                         if(Turn_cnt >= Turn_Max)
+  98   2                              run_status ++;
+  99   2               }
+ 100   1               if(run_status == 2)
+ 101   1               {
+ 102   2                              Hoz_cnt ++;
+ 103   2                              if(Hoz_cnt >=straight_Hoz_Max)
+ 104   2                                      run_status ++;
+ 105   2               }
+ 106   1               if(run_status == 3)
+ 107   1               {
+ 108   2                              Turn_cnt --;
+ 109   2                         if(Turn_cnt <= 0)
+ 110   2                              run_status ++;
+ 111   2               }
+ 112   1               if(run_status == 4)
+ 113   1               {
+ 114   2                         Vec_cnt --;
+ 115   2                         if(Vec_cnt <= 0)
+C51 COMPILER V9.00   QUDONG                                                                11/29/2018 11:19:37 PAGE 3   
 
- 116   1               if(run_status == 5)
- 117   1               {
- 118   2                         Turn_cnt ++;
- 119   2                         if(Turn_cnt >= Turn_Max)
- 120   2                              run_status ++;
- 121   2               }
- 122   1               if(run_status == 6)
- 123   1               {
- 124   2                         Hoz_cnt --;
- 125   2                         if(Hoz_cnt <= 0)
- 126   2                              run_status ++;
- 127   2               }
- 128   1      
- 129   1              if(mechine_flag ==1)
- 130   1              {
- 131   2                      run_status ++;
- 132   2      
- 133   2                      mechine_flag = 0;
- 134   2              }
- 135   1      
- 136   1      //正常运行
- 137   1               if(run_status == 0)
- 138   1               {
- 139   2                         Forward();
- 140   2               }
- 141   1               if(run_status == 1)
- 142   1               {
- 143   2                         Left();
- 144   2               }
- 145   1               if(run_status == 2)
- 146   1               {
- 147   2                         Forward();
- 148   2               }
- 149   1               if(run_status == 3)
- 150   1               {
- 151   2                         Left();
- 152   2               }
- 153   1               if(run_status == 4)
- 154   1               {
- 155   2                         Forward();
- 156   2               }
- 157   1               if(run_status == 5)
- 158   1               {
- 159   2                         Left();
- 160   2               }
- 161   1               if(run_status == 6)
- 162   1               {
- 163   2                         Forward();
- 164   2               }
- 165   1               if(run_status == 7)
- 166   1               {
- 167   2                         Stop();
- 168   2               }
- 169   1      
- 170   1      }
- 171          void travel_task(uchar Feq)
- 172          {
- 173   1              travel_logic();
- 174   1      }
-*** WARNING C280 IN LINE 171 OF QUDONG.C: 'Feq': unreferenced local variable
+ 116   2                              run_status ++;
+ 117   2               }
+ 118   1               if(run_status == 5)
+ 119   1               {
+ 120   2                         Turn_cnt ++;
+ 121   2                         if(Turn_cnt >= Turn_Max)
+ 122   2                              run_status ++;
+ 123   2               }
+ 124   1               if(run_status == 6)
+ 125   1               {
+ 126   2                         Hoz_cnt --;
+ 127   2                         if(Hoz_cnt <= 0)
+ 128   2                              run_status ++;
+ 129   2               }
+ 130   1      
+ 131   1              if(mechine_flag ==1&&run_status%2!=0)
+ 132   1              {
+ 133   2                      run_status ++;
+ 134   2      
+ 135   2                      mechine_flag = 0;
+ 136   2              }
+ 137   1      
+ 138   1      //正常运行
+ 139   1               if(run_status == 0)
+ 140   1               {
+ 141   2                         Forward();
+ 142   2               }
+ 143   1               if(run_status == 1)
+ 144   1               {
+ 145   2                         Left();
+ 146   2               }
+ 147   1               if(run_status == 2)
+ 148   1               {
+ 149   2                         Forward();
+ 150   2               }
+ 151   1               if(run_status == 3)
+ 152   1               {
+ 153   2                         Left();
+ 154   2               }
+ 155   1               if(run_status == 4)
+ 156   1               {
+ 157   2                         Forward();
+ 158   2               }
+ 159   1               if(run_status == 5)
+ 160   1               {
+ 161   2                         Left();
+ 162   2               }
+ 163   1               if(run_status == 6)
+ 164   1               {
+ 165   2                         Forward();
+ 166   2               }
+ 167   1               if(run_status == 7)
+ 168   1               {
+ 169   2                         Stop();
+ 170   2               }
+ 171   1      
+ 172   1      }
+ 173          void travel_task(uchar Feq)
+ 174          {
+ 175   1              travel_logic();
+ 176   1      }
+*** WARNING C280 IN LINE 173 OF QUDONG.C: 'Feq': unreferenced local variable
+C51 COMPILER V9.00   QUDONG                                                                11/29/2018 11:19:37 PAGE 4   
 
 
-C51 COMPILER V9.00   QUDONG                                                                11/29/2018 01:36:41 PAGE 4   
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    441    ----
+   CODE SIZE        =    446    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

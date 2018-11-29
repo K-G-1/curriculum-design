@@ -1,4 +1,6 @@
 #include"all.h"
+
+//修改这三个宏定义 以控制小车的行驶距离
 #define straight_Ver_Max 50
 #define straight_Hoz_Max 30
 
@@ -126,7 +128,7 @@ void travel_logic(void)
 		   	run_status ++;
 	 }
 
-	if(mechine_flag ==1)
+	if(mechine_flag ==1&&run_status%2!=0)
 	{
 		run_status ++;
 
