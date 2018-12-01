@@ -66,14 +66,8 @@ void forward2()	 //电机2前进
 
 void speed(uint cnt1,uint sd1,uint cnt2,uint sd2)
 {
-   if(cnt1<sd1)		//电机1	PWM调速
-   		PWM1=1;
-	else
-		PWM1=0;
-	if(cnt2<sd2)//电机2	PWM调速
-	   	PWM2=1;
-	else
-	    PWM2=0;
+		PWM_Left = cnt1;
+		PWM_Right = cnt2;
 }
 void turn(uint cnt1,uint sd1,uint cnt2,uint sd2)
 {
@@ -85,6 +79,7 @@ void turn(uint cnt1,uint sd1,uint cnt2,uint sd2)
 void travel_logic(void)
 {
 // 状态 切换
+//	display(PWM_Left);
 	 if(run_status == 0)
 	 {
 	 		Vec_cnt ++;
@@ -136,39 +131,71 @@ void travel_logic(void)
 	}
 
 //正常运行
+//	 if(run_status == 0)
+//	 {
+//	  	   Forward();
+//	 }
+//	 if(run_status == 1)
+//	 {
+//	  	   Left();
+//	 }
+//	 if(run_status == 2)
+//	 {
+//	  	   Forward();
+//	 }
+//	 if(run_status == 3)
+//	 {
+//	  	   Left();
+//	 }
+//	 if(run_status == 4)
+//	 {
+//	  	   Forward();
+//	 }
+//	 if(run_status == 5)
+//	 {
+//	  	   Left();
+//	 }
+//	 if(run_status == 6)
+//	 {
+//	  	   Forward();
+//	 }
+//	 if(run_status == 7)
+//	 {
+//	  	   Stop();
+//	 }
+
 	 if(run_status == 0)
 	 {
-	  	   Forward();
+	  	   speed(5,0,5,0);
 	 }
 	 if(run_status == 1)
 	 {
-	  	   Left();
+	  	   speed(20,0,5,0);
 	 }
 	 if(run_status == 2)
 	 {
-	  	   Forward();
+	  	   speed(5,0,5,0);
 	 }
 	 if(run_status == 3)
 	 {
-	  	   Left();
+	  	   speed(20,0,5,0);
 	 }
 	 if(run_status == 4)
 	 {
-	  	   Forward();
+	  	   speed(5,0,5,0);
 	 }
 	 if(run_status == 5)
 	 {
-	  	   Left();
+	  	   speed(20,0,5,0);
 	 }
 	 if(run_status == 6)
 	 {
-	  	   Forward();
+	  	   speed(5,0,5,0);
 	 }
 	 if(run_status == 7)
 	 {
-	  	   Stop();
+	  	   speed(20,0,20,0);
 	 }
-
 }
 void travel_task(uchar Feq)
 {

@@ -4,5 +4,5 @@
 #include "common.h"
 void display(uint dis_data);
 
-void LED_task(uchar *sta);
+void LED_task(uchar sta);
 #endif

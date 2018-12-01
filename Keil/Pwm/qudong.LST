@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   QUDONG                                                                11/29/2018 11:19:37 PAGE 1   
+C51 COMPILER V9.00   QUDONG                                                                12/01/2018 13:21:26 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE QUDONG
@@ -10,7 +10,6 @@ line level    source
 *** WARNING C500 IN LINE 1 OF QUDONG.C: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
 
    1          #include"all.h"
-*** WARNING C235 IN LINE 7 OF DISPLAY.H: parameter 1: different types
    2          
    3          //修改这三个宏定义 以控制小车的行驶距离
    4          #define straight_Ver_Max 50
@@ -63,9 +62,9 @@ line level    source
   51   1                in3=0;
   52   1                in4=0;
   53   1      }
-C51 COMPILER V9.00   QUDONG                                                                11/29/2018 11:19:37 PAGE 2   
-
   54          
+C51 COMPILER V9.00   QUDONG                                                                12/01/2018 13:21:26 PAGE 2   
+
   55          
   56          void forward1() //电机1前进
   57          {
@@ -80,123 +79,152 @@ line level    source
   66          
   67          void speed(uint cnt1,uint sd1,uint cnt2,uint sd2)
   68          {
-  69   1         if(cnt1<sd1)         //电机1 PWM调速
-  70   1                      PWM1=1;
-  71   1              else
-  72   1                      PWM1=0;
-  73   1              if(cnt2<sd2)//电机2     PWM调速
-  74   1                      PWM2=1;
-  75   1              else
-  76   1                  PWM2=0;
+  69   1                      PWM_Left = cnt1;
+  70   1                      PWM_Right = cnt2;
+  71   1      }
+*** WARNING C280 IN LINE 67 OF QUDONG.C: 'sd1': unreferenced local variable
+*** WARNING C280 IN LINE 67 OF QUDONG.C: 'sd2': unreferenced local variable
+  72          void turn(uint cnt1,uint sd1,uint cnt2,uint sd2)
+  73          {
+  74   1              forward1();
+  75   1              forward2();
+  76   1              speed(cnt1,sd1,cnt2,sd2);
   77   1      }
-  78          void turn(uint cnt1,uint sd1,uint cnt2,uint sd2)
-  79          {
-  80   1              forward1();
-  81   1              forward2();
-  82   1              speed(cnt1,sd1,cnt2,sd2);
-  83   1      }
-  84          // 100ms调用一次
-  85          void travel_logic(void)
-  86          {
-  87   1      // 状态 切换
-  88   1               if(run_status == 0)
-  89   1               {
-  90   2                              Vec_cnt ++;
-  91   2                         if(Vec_cnt >= straight_Ver_Max)
-  92   2                              run_status ++;
-  93   2               }
-  94   1               if(run_status == 1)
-  95   1               {
-  96   2                              Turn_cnt ++;
-  97   2                         if(Turn_cnt >= Turn_Max)
-  98   2                              run_status ++;
-  99   2               }
- 100   1               if(run_status == 2)
- 101   1               {
- 102   2                              Hoz_cnt ++;
- 103   2                              if(Hoz_cnt >=straight_Hoz_Max)
- 104   2                                      run_status ++;
- 105   2               }
- 106   1               if(run_status == 3)
- 107   1               {
- 108   2                              Turn_cnt --;
- 109   2                         if(Turn_cnt <= 0)
- 110   2                              run_status ++;
- 111   2               }
- 112   1               if(run_status == 4)
- 113   1               {
- 114   2                         Vec_cnt --;
- 115   2                         if(Vec_cnt <= 0)
-C51 COMPILER V9.00   QUDONG                                                                11/29/2018 11:19:37 PAGE 3   
+  78          // 100ms调用一次
+  79          void travel_logic(void)
+  80          {
+  81   1      // 状态 切换
+  82   1      //      display(PWM_Left);
+  83   1               if(run_status == 0)
+  84   1               {
+  85   2                              Vec_cnt ++;
+  86   2                         if(Vec_cnt >= straight_Ver_Max)
+  87   2                              run_status ++;
+  88   2               }
+  89   1               if(run_status == 1)
+  90   1               {
+  91   2                              Turn_cnt ++;
+  92   2                         if(Turn_cnt >= Turn_Max)
+  93   2                              run_status ++;
+  94   2               }
+  95   1               if(run_status == 2)
+  96   1               {
+  97   2                              Hoz_cnt ++;
+  98   2                              if(Hoz_cnt >=straight_Hoz_Max)
+  99   2                                      run_status ++;
+ 100   2               }
+ 101   1               if(run_status == 3)
+ 102   1               {
+ 103   2                              Turn_cnt --;
+ 104   2                         if(Turn_cnt <= 0)
+ 105   2                              run_status ++;
+ 106   2               }
+ 107   1               if(run_status == 4)
+ 108   1               {
+ 109   2                         Vec_cnt --;
+ 110   2                         if(Vec_cnt <= 0)
+ 111   2                              run_status ++;
+ 112   2               }
+ 113   1               if(run_status == 5)
+ 114   1               {
+C51 COMPILER V9.00   QUDONG                                                                12/01/2018 13:21:26 PAGE 3   
 
- 116   2                              run_status ++;
- 117   2               }
- 118   1               if(run_status == 5)
- 119   1               {
- 120   2                         Turn_cnt ++;
- 121   2                         if(Turn_cnt >= Turn_Max)
- 122   2                              run_status ++;
- 123   2               }
- 124   1               if(run_status == 6)
- 125   1               {
- 126   2                         Hoz_cnt --;
- 127   2                         if(Hoz_cnt <= 0)
- 128   2                              run_status ++;
- 129   2               }
- 130   1      
- 131   1              if(mechine_flag ==1&&run_status%2!=0)
- 132   1              {
- 133   2                      run_status ++;
- 134   2      
- 135   2                      mechine_flag = 0;
- 136   2              }
- 137   1      
- 138   1      //正常运行
- 139   1               if(run_status == 0)
- 140   1               {
- 141   2                         Forward();
- 142   2               }
- 143   1               if(run_status == 1)
- 144   1               {
- 145   2                         Left();
- 146   2               }
- 147   1               if(run_status == 2)
- 148   1               {
- 149   2                         Forward();
- 150   2               }
- 151   1               if(run_status == 3)
- 152   1               {
- 153   2                         Left();
- 154   2               }
- 155   1               if(run_status == 4)
- 156   1               {
- 157   2                         Forward();
- 158   2               }
- 159   1               if(run_status == 5)
- 160   1               {
- 161   2                         Left();
- 162   2               }
- 163   1               if(run_status == 6)
- 164   1               {
- 165   2                         Forward();
- 166   2               }
- 167   1               if(run_status == 7)
+ 115   2                         Turn_cnt ++;
+ 116   2                         if(Turn_cnt >= Turn_Max)
+ 117   2                              run_status ++;
+ 118   2               }
+ 119   1               if(run_status == 6)
+ 120   1               {
+ 121   2                         Hoz_cnt --;
+ 122   2                         if(Hoz_cnt <= 0)
+ 123   2                              run_status ++;
+ 124   2               }
+ 125   1      
+ 126   1              if(mechine_flag ==1&&run_status%2!=0)
+ 127   1              {
+ 128   2                      run_status ++;
+ 129   2      
+ 130   2                      mechine_flag = 0;
+ 131   2              }
+ 132   1      
+ 133   1      //正常运行
+ 134   1      //       if(run_status == 0)
+ 135   1      //       {
+ 136   1      //                 Forward();
+ 137   1      //       }
+ 138   1      //       if(run_status == 1)
+ 139   1      //       {
+ 140   1      //                 Left();
+ 141   1      //       }
+ 142   1      //       if(run_status == 2)
+ 143   1      //       {
+ 144   1      //                 Forward();
+ 145   1      //       }
+ 146   1      //       if(run_status == 3)
+ 147   1      //       {
+ 148   1      //                 Left();
+ 149   1      //       }
+ 150   1      //       if(run_status == 4)
+ 151   1      //       {
+ 152   1      //                 Forward();
+ 153   1      //       }
+ 154   1      //       if(run_status == 5)
+ 155   1      //       {
+ 156   1      //                 Left();
+ 157   1      //       }
+ 158   1      //       if(run_status == 6)
+ 159   1      //       {
+ 160   1      //                 Forward();
+ 161   1      //       }
+ 162   1      //       if(run_status == 7)
+ 163   1      //       {
+ 164   1      //                 Stop();
+ 165   1      //       }
+ 166   1      
+ 167   1               if(run_status == 0)
  168   1               {
- 169   2                         Stop();
+ 169   2                         speed(5,0,5,0);
  170   2               }
- 171   1      
- 172   1      }
- 173          void travel_task(uchar Feq)
- 174          {
- 175   1              travel_logic();
- 176   1      }
-*** WARNING C280 IN LINE 173 OF QUDONG.C: 'Feq': unreferenced local variable
-C51 COMPILER V9.00   QUDONG                                                                11/29/2018 11:19:37 PAGE 4   
+ 171   1               if(run_status == 1)
+ 172   1               {
+ 173   2                         speed(20,0,5,0);
+ 174   2               }
+ 175   1               if(run_status == 2)
+ 176   1               {
+C51 COMPILER V9.00   QUDONG                                                                12/01/2018 13:21:26 PAGE 4   
 
+ 177   2                         speed(5,0,5,0);
+ 178   2               }
+ 179   1               if(run_status == 3)
+ 180   1               {
+ 181   2                         speed(20,0,5,0);
+ 182   2               }
+ 183   1               if(run_status == 4)
+ 184   1               {
+ 185   2                         speed(5,0,5,0);
+ 186   2               }
+ 187   1               if(run_status == 5)
+ 188   1               {
+ 189   2                         speed(20,0,5,0);
+ 190   2               }
+ 191   1               if(run_status == 6)
+ 192   1               {
+ 193   2                         speed(5,0,5,0);
+ 194   2               }
+ 195   1               if(run_status == 7)
+ 196   1               {
+ 197   2                         speed(20,0,20,0);
+ 198   2               }
+ 199   1      }
+ 200          void travel_task(uchar Feq)
+ 201          {
+ 202   1              travel_logic();
+ 203   1      }
+*** WARNING C280 IN LINE 200 OF QUDONG.C: 'Feq': unreferenced local variable
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    446    ----
+   CODE SIZE        =    485    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
@@ -206,4 +234,4 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  3 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  4 WARNING(S),  0 ERROR(S)
