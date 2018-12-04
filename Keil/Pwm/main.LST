@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   MAIN                                                                  12/01/2018 13:21:26 PAGE 1   
+C51 COMPILER V9.00   MAIN                                                                  12/04/2018 15:17:10 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
@@ -14,131 +14,142 @@ line level    source
    3          uint systick_cnt = 0;                                                   //心跳时钟计数 
    4          uint ms_10,ms_100,ms_500,ms_1000 = 0;                   // 调用频率
    5          
-   6          uint PWM_Left = 20;
-   7          uint PWM_Right = 20;
+   6          uint PWM_Left = 10;
+   7          uint PWM_Right = 10;
    8          uint PWM_Left_cnt = 0;
    9          uint PWM_Right_cnt = 0;
   10          
-  11          void init()
-  12          {
-  13   1              TMOD=0x11;          //定义定时器0工作方式1
-  14   1              TH0=(65536-1000)/256;     // 12M时钟就是1ms的计时
-  15   1              TL0=(65536-1000)%256;
-  16   1              TH1=(65536-500)/256;      // 12M时钟就是1ms的计时
-  17   1              TL1=(65536-500)%256;
-  18   1              EA=1;
-  19   1              ET0=1;
-  20   1              TR0=1;
-  21   1              ET1=1;
-  22   1              TR1=1;
-  23   1      }
-  24          
-  25          void task(void)
-  26          {
-  27   1              //读取火焰传感器与避障传感器
-  28   1              if(ms_10 == 1)
-  29   1              {
-  30   2                       ms_10 = 0;
-  31   2                       detection_IO();
-  32   2                       display(voltage);
-  33   2              }
-  34   1              // 行驶逻辑
-  35   1              if(ms_100 == 1)
-  36   1              {
-  37   2                      ms_100 = 0;
-  38   2      
-  39   2                      travel_task(10);
-  40   2              }
-  41   1              // ADC任务
-  42   1              if(ms_500 == 1)
-  43   1              {
-  44   2                        ADC_task();
-  45   2              }
-  46   1              //led显示，也可以当做报警设置
-  47   1              if(ms_1000 == 1)
-  48   1              {
-  49   2                       ms_1000 = 0;
-  50   2                       
-  51   2                       LED_task(machine_status);
-  52   2              }
-  53   1      }
-  54          void main()
-C51 COMPILER V9.00   MAIN                                                                  12/01/2018 13:21:26 PAGE 2   
+  11          uint Falling_edge = 0;
+  12          void init()
+  13          {
+  14   1              TMOD=0x11;          //定义定时器0工作方式1
+  15   1              TH0=(65536-1000)/256;     // 12M时钟就是1ms的计时
+  16   1              TL0=(65536-1000)%256;
+  17   1              TH1=(65536-500)/256;      // 12M时钟就是1ms的计时
+  18   1              TL1=(65536-500)%256;
+  19   1              EA=1;
+  20   1              ET0=1;
+  21   1              TR0=1;
+  22   1              ET1=1;
+  23   1              TR1=1;
+  24   1              EX0 = 1;                 //允许外部中断0中断
+  25   1              IT0 = 1;
+  26   1      }
+  27          
+  28          void task(void)
+  29          {
+  30   1              //读取火焰传感器与避障传感器
+  31   1              if(ms_10 == 1)
+  32   1              {
+  33   2                       ms_10 = 0;
+  34   2                       detection_IO();
+  35   2      
+  36   2              }
+  37   1              // 行驶逻辑
+  38   1              if(ms_100 == 1)
+  39   1              {
+  40   2                      ms_100 = 0;
+  41   2      
+  42   2                      travel_task(10);
+  43   2              }
+  44   1              // ADC任务
+  45   1              if(ms_500 == 1)
+  46   1              {
+  47   2                 ms_500 = 0;
+  48   2                 ADC_task();
+  49   2                 display(voltage);
+  50   2              }
+  51   1              //led显示，也可以当做报警设置
+  52   1              if(ms_1000 == 1)
+  53   1              {
+  54   2                       ms_1000 = 0;
+C51 COMPILER V9.00   MAIN                                                                  12/04/2018 15:17:10 PAGE 2   
 
-  55          {
-  56   1              
-  57   1              init();
-  58   1              P0=0x00;
-  59   1              P1=0x00;
-  60   1              P2=0x00;
-  61   1              P2=0x00;
-  62   1      //      PWM1 = 1;
-  63   1      //      PWM2 = 1;
-  64   1              Forward();
-  65   1              while(1)
-  66   1              {
-  67   2                      // 任务调用
-  68   2                      task();
-  69   2                      
-  70   2      
-  71   2              }
-  72   1      
-  73   1      }
-  74          //这个中断最好不要修改
-  75          void  time0() interrupt 1
-  76          {
-  77   1              TH0=(65536-1000)/256;
-  78   1              TL0=(65536-1000)%256;
-  79   1              systick_cnt ++;
-  80   1      
-  81   1              if(systick_cnt %10 == 0)
-  82   1                      ms_10 = 1;
-  83   1              if(systick_cnt % 100 == 0)
-  84   1                      ms_100 = 1 ;
-  85   1              if(systick_cnt % 500 == 0)
-  86   1                      ms_500 = 1 ;
-  87   1              if(systick_cnt % 1000 == 0)
-  88   1                      ms_1000 = 1 ;
-  89   1      
-  90   1      }
-  91          
-  92          
-  93          void  time1() interrupt 3
-  94          {
-  95   1              TH1=(65536-500)/256;
-  96   1              TL1=(65536-500)%256;
-  97   1              PWM_Left_cnt ++;
-  98   1              PWM_Right_cnt++;
-  99   1      
- 100   1              if(PWM_Left_cnt > PWM_Left)
- 101   1                      PWM1 = 1;
+  55   2                      LED_task(machine_status);
+  56   2              }
+  57   1      }
+  58          void main()
+  59          {
+  60   1              
+  61   1              init();
+  62   1              P0=0x00;
+  63   1              P1=0x00;
+  64   1              P2=0x00;
+  65   1              P3=0x00;
+  66   1      //      PWM1 = 1;
+  67   1      //      PWM2 = 1;
+  68   1              Forward();
+  69   1              while(1)
+  70   1              {
+  71   2                      // 任务调用
+  72   2                      task();
+  73   2      
+  74   2              }
+  75   1      
+  76   1      }
+  77          //这个中断最好不要修改
+  78          void  time0() interrupt 1
+  79          {
+  80   1              TH0=(65536-1000)/256;
+  81   1              TL0=(65536-1000)%256;
+  82   1              systick_cnt ++;
+  83   1      
+  84   1              if(systick_cnt %10 == 0)
+  85   1                      ms_10 = 1;
+  86   1              if(systick_cnt % 100 == 0)
+  87   1                      ms_100 = 1 ;
+  88   1              if(systick_cnt % 500 == 0)
+  89   1                      ms_500 = 1 ;
+  90   1              if(systick_cnt % 1000 == 0)
+  91   1                      ms_1000 = 1 ;
+  92   1      
+  93   1      }
+  94          
+  95          
+  96          void  time1() interrupt 3
+  97          {
+  98   1              TH1=(65536-500)/256;
+  99   1              TL1=(65536-500)%256;
+ 100   1              PWM_Left_cnt ++;
+ 101   1              PWM_Right_cnt++;
  102   1      
- 103   1              if(PWM_Left_cnt >= Full_PWM)
- 104   1              {
- 105   2                      PWM_Left_cnt = 0;
- 106   2                      PWM1 = 0;
- 107   2              }
- 108   1      
- 109   1              if(PWM_Right_cnt > PWM_Right)
- 110   1                      PWM2 = 1;
- 111   1      
- 112   1              if(PWM_Right_cnt >= Full_PWM)
- 113   1              {
- 114   2                      PWM_Left_cnt = 0;
- 115   2                      PWM2 = 0;
- 116   2              }
-C51 COMPILER V9.00   MAIN                                                                  12/01/2018 13:21:26 PAGE 3   
+ 103   1              
+ 104   1              if(PWM_Left_cnt >= Full_PWM)
+ 105   1              {
+ 106   2                      PWM_Left_cnt = 0;
+ 107   2                      PWM1 = 0;
+ 108   2              }
+ 109   1              if(PWM_Left_cnt >= PWM_Left)
+ 110   1              {
+ 111   2                      PWM1 = 1;
+ 112   2              }
+ 113   1      
+ 114   1              
+ 115   1              if(PWM_Right_cnt >= Full_PWM)
+ 116   1              {
+C51 COMPILER V9.00   MAIN                                                                  12/04/2018 15:17:10 PAGE 3   
 
- 117   1      
- 118   1      }
+ 117   2                      PWM_Left_cnt = 0;
+ 118   2                      PWM2 = 0;
+ 119   2              }
+ 120   1              if(PWM_Right_cnt >= PWM_Right)
+ 121   1              {
+ 122   2                      PWM2 = 1;
+ 123   2              }
+ 124   1      
+ 125   1      }
+ 126          void ex_init() interrupt 0        
+ 127          {
+ 128   1              Falling_edge ++;
+ 129   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    338    ----
+   CODE SIZE        =    359    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     22    ----
+   DATA SIZE        =     24    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

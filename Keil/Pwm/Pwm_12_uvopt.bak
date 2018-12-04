@@ -218,10 +218,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>16</ColumnNumber>
+      <ColumnNumber>2</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>63</TopLine>
-      <CurrentLine>79</CurrentLine>
+      <TopLine>79</TopLine>
+      <CurrentLine>107</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -285,9 +285,9 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>G:\Keil\毕业设计\curriculum-design\Keil\Pwm\all.h</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>28</CurrentLine>
+    <PathWithFilename>G:\Keil\毕业设计\curriculum-design\自动往返小车\自动往返小车.c</PathWithFilename>
+    <TopLine>395</TopLine>
+    <CurrentLine>395</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -337,9 +337,9 @@
   </AlienFiles>
 
   <AlienFiles>
-    <PathWithFilename>G:\Keil\毕业设计\curriculum-design\自动往返小车\自动往返小车.c</PathWithFilename>
-    <TopLine>97</TopLine>
-    <CurrentLine>97</CurrentLine>
+    <PathWithFilename>G:\Keil\毕业设计\curriculum-design\Keil\Pwm\ALL.H</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>28</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1703,13 +1703,13 @@
     <ActiveMDIGroup>0</ActiveMDIGroup>
     <MDIGroup>
       <Size>100</Size>
-      <ActiveTab>4</ActiveTab>
+      <ActiveTab>0</ActiveTab>
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>16</ColumnNumber>
-          <TopLine>63</TopLine>
-          <CurrentLine>79</CurrentLine>
+          <ColumnNumber>2</ColumnNumber>
+          <TopLine>79</TopLine>
+          <CurrentLine>107</CurrentLine>
         </Doc>
         <Doc>
           <Name>ALL.H</Name>
@@ -1731,9 +1731,9 @@
         </Doc>
         <Doc>
           <Name>G:\Keil\毕业设计\curriculum-design\自动往返小车\自动往返小车.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>97</TopLine>
-          <CurrentLine>97</CurrentLine>
+          <ColumnNumber>11</ColumnNumber>
+          <TopLine>395</TopLine>
+          <CurrentLine>395</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

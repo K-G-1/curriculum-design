@@ -28,7 +28,7 @@ sbit PWM1=P2^4;
 sbit PWM2=P2^5;
 
 extern uint PWM_Left ,PWM_Right ,PWM_Left_cnt ,PWM_Right_cnt ;
-
+extern uint Falling_edge;
 
 sbit flame = P1^7;
 sbit obstacle = P1^6;

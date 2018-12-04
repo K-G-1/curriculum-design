@@ -134,7 +134,7 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>100</LineNumber>
+          <LineNumber>287</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -142,14 +142,14 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>main.c</Filename>
+          <Filename>qudong.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>40</LineNumber>
+          <LineNumber>280</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -157,7 +157,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>main.c</Filename>
+          <Filename>qudong.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -202,12 +202,12 @@
       <GroupNumber>1</GroupNumber>
       <FileNumber>1</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>8</ColumnNumber>
+      <ColumnNumber>5</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>61</TopLine>
-      <CurrentLine>82</CurrentLine>
+      <TopLine>88</TopLine>
+      <CurrentLine>88</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\qudong.c</PathWithFileName>
       <FilenameWithoutPath>qudong.c</FilenameWithoutPath>
@@ -218,10 +218,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>2</ColumnNumber>
+      <ColumnNumber>8</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>79</TopLine>
-      <CurrentLine>107</CurrentLine>
+      <TopLine>89</TopLine>
+      <CurrentLine>89</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -285,32 +285,6 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>G:\Keil\毕业设计\curriculum-design\自动往返小车\自动往返小车.c</PathWithFilename>
-    <TopLine>395</TopLine>
-    <CurrentLine>395</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
     <PathWithFilename>H:\KEIL\C51\INC\ATMEL\REGX52.H</PathWithFilename>
     <TopLine>159</TopLine>
     <CurrentLine>159</CurrentLine>
@@ -339,7 +313,111 @@
   <AlienFiles>
     <PathWithFilename>G:\Keil\毕业设计\curriculum-design\Keil\Pwm\ALL.H</PathWithFilename>
     <TopLine>1</TopLine>
-    <CurrentLine>28</CurrentLine>
+    <CurrentLine>27</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>D:\Users\20607\Documents\Tencent Files\2060713822\FileRecv\自动往返小车\自动往返小车\自动往返小车.c</PathWithFilename>
+    <TopLine>365</TopLine>
+    <CurrentLine>390</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>D:\Users\20607\Documents\Tencent Files\2060713822\FileRecv\自动往返小车\自动往返小车\lcd1602.h</PathWithFilename>
+    <TopLine>197</TopLine>
+    <CurrentLine>197</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>D:\Users\20607\Documents\Tencent Files\2060713822\FileRecv\自动往返小车\自动往返小车\che.h</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>12</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>G:\Keil\毕业设计\curriculum-design\Keil\Pwm\QUDONG.H</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>17</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1707,21 +1785,21 @@
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>2</ColumnNumber>
-          <TopLine>79</TopLine>
-          <CurrentLine>107</CurrentLine>
+          <ColumnNumber>8</ColumnNumber>
+          <TopLine>89</TopLine>
+          <CurrentLine>89</CurrentLine>
         </Doc>
         <Doc>
           <Name>ALL.H</Name>
           <ColumnNumber>5</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>28</CurrentLine>
+          <CurrentLine>27</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\qudong.c</Name>
-          <ColumnNumber>8</ColumnNumber>
-          <TopLine>61</TopLine>
-          <CurrentLine>82</CurrentLine>
+          <ColumnNumber>5</ColumnNumber>
+          <TopLine>88</TopLine>
+          <CurrentLine>88</CurrentLine>
         </Doc>
         <Doc>
           <Name>H:\KEIL\C51\INC\ATMEL\REGX52.H</Name>
@@ -1730,10 +1808,28 @@
           <CurrentLine>159</CurrentLine>
         </Doc>
         <Doc>
-          <Name>G:\Keil\毕业设计\curriculum-design\自动往返小车\自动往返小车.c</Name>
-          <ColumnNumber>11</ColumnNumber>
-          <TopLine>395</TopLine>
-          <CurrentLine>395</CurrentLine>
+          <Name>D:\Users\20607\Documents\Tencent Files\2060713822\FileRecv\自动往返小车\自动往返小车\自动往返小车.c</Name>
+          <ColumnNumber>23</ColumnNumber>
+          <TopLine>365</TopLine>
+          <CurrentLine>390</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>D:\Users\20607\Documents\Tencent Files\2060713822\FileRecv\自动往返小车\自动往返小车\lcd1602.h</Name>
+          <ColumnNumber>86</ColumnNumber>
+          <TopLine>197</TopLine>
+          <CurrentLine>197</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>D:\Users\20607\Documents\Tencent Files\2060713822\FileRecv\自动往返小车\自动往返小车\che.h</Name>
+          <ColumnNumber>151</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>12</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>QUDONG.H</Name>
+          <ColumnNumber>37</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>17</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

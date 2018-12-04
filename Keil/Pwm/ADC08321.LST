@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   ADC08321                                                              12/01/2018 13:21:27 PAGE 1   
+C51 COMPILER V9.00   ADC08321                                                              12/04/2018 15:10:00 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE ADC08321
@@ -63,7 +63,7 @@ line level    source
   52   1              uchar ADC_value = 0;
   53   1              
   54   1      
-C51 COMPILER V9.00   ADC08321                                                              12/01/2018 13:21:27 PAGE 2   
+C51 COMPILER V9.00   ADC08321                                                              12/04/2018 15:10:00 PAGE 2   
 
   55   1              ADC_value = readad0831();
   56   1              voltage =       ADC_value*5*10/255;
